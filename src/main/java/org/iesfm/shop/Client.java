@@ -1,5 +1,8 @@
 package org.iesfm.shop;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Client {
@@ -7,7 +10,11 @@ public class Client {
     private String name;
     private String surname;
 
-    public Client(int id, String name, String surname) {
+    @JsonCreator
+    public Client(
+            @JsonProperty("id") int id,
+            @JsonProperty("name") String name,
+            @JsonProperty("surname") String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
