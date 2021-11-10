@@ -17,7 +17,7 @@ public class ArticleController {
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/articles")
-    public List<Article> list(@RequestParam(name="tag") String tag) {
+    public List<Article> list(@RequestParam(name="tag", required = false) String tag) {
         if(tag != null){
             return articleDAO.list(tag);
         } else {
