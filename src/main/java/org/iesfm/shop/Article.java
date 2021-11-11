@@ -12,12 +12,12 @@ public class Article {
     private double price;
     private Set<String> tags;
 
+
     @JsonCreator
-    public Article(
-            @JsonProperty("id")int id,
-            @JsonProperty("name")String name,
-            @JsonProperty("price")double price,
-            @JsonProperty("tags")Set<String> tags) {
+    public Article(@JsonProperty("id")int id,
+                   @JsonProperty("name")String name,
+                   @JsonProperty("price")double price,
+                   @JsonProperty("tags") Set<String> tags) {
         this.id = id;
         this.name = name;
         this.price = price;
