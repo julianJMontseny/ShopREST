@@ -33,14 +33,14 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/orders")
-    public void createOrder(@Value("idClient") int idClient,@Value("idArticle") int idArticle, @RequestBody Order order){
+    public void createOrder(int idClient, int idArticle, @RequestBody Order order){
         articleController.list(idArticle);
         clientController.getClient(idClient);
         orderDAO.insert(order);
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/clients/{idCliente}/orders/{idOrder}")
-    public void updateOrder(@Value("idClient") int idClient,@Value("idArticle") int idArticle, @RequestBody Order order){
+    public void updateOrder( int idClient, int idArticle, @RequestBody Order order){
         clientController.getClient(idClient);
         articleController.list(idArticle);
         if(!orderDAO.update(order)){
