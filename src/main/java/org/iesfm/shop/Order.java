@@ -1,6 +1,7 @@
 package org.iesfm.shop;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -10,13 +11,14 @@ import java.util.Objects;
 public class Order {
     private int id;
     private int clientId;
+    @JsonFormat(locale = "dd/MM/yyyy")
     private Date date;
 
     @JsonCreator
     public Order(
             @JsonProperty("id") int id,
-            @JsonProperty("id")int clientId,
-            @JsonProperty("id")Date date) {
+            @JsonProperty("clientId")int clientId,
+            @JsonProperty("orderdate")Date date) {
         this.id = id;
         this.clientId = clientId;
         this.date = date;

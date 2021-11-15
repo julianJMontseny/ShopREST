@@ -12,9 +12,12 @@ import java.util.List;
 @RestController
 public class ArticleController {
 
-    @Autowired
+
     private ArticleDAO articleDAO;
 
+    public ArticleController(ArticleDAO articleDAO) {
+        this.articleDAO = articleDAO;
+    }
 
     @RequestMapping(method = RequestMethod.GET, path = "/articles")
     public List<Article> list(@RequestParam(name="tag", required = false) String tag) {
