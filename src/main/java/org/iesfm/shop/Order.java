@@ -11,16 +11,14 @@ import java.util.Objects;
 public class Order {
     private int id;
     private int clientId;
+    private List<OrderItem> items;
     @JsonFormat(locale = "dd/MM/yyyy")
     private Date date;
 
-    @JsonCreator
-    public Order(
-            @JsonProperty("id") int id,
-            @JsonProperty("clientId")int clientId,
-            @JsonProperty("orderdate")Date date) {
+    public Order(int id, int clientId, List<OrderItem> items, Date date) {
         this.id = id;
         this.clientId = clientId;
+        this.items = items;
         this.date = date;
     }
 
@@ -40,6 +38,13 @@ public class Order {
         this.clientId = clientId;
     }
 
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
 
     public Date getDate() {
         return date;
@@ -54,12 +59,12 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id && clientId == order.clientId && Objects.equals(date, order.date);
+        return id == order.id && clientId == order.clientId && Objects.equals(items, order.items) && Objects.equals(date, order.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clientId, date);
+        return Objects.hash(id, clientId, items, date);
     }
 
     @Override
@@ -67,6 +72,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", clientId=" + clientId +
+                ", items=" + items +
                 ", date=" + date +
                 '}';
     }

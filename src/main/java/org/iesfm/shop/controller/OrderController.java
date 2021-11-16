@@ -6,10 +6,7 @@ import org.iesfm.shop.dao.inmemory.InMemoryOrderDAO;
 import org.iesfm.shop.dao.jdbc.JDBCOrderDAO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -40,7 +37,7 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/clients/{idCliente}/orders/{idOrder}")
-    public void updateOrder( int idClient, int idArticle, @RequestBody Order order){
+    public void updateOrder(@PathVariable("idCliente")int idClient,@PathVariable("idArticle") int idArticle, @PathVariable("idOrder") int idOrder, @RequestBody Order order){
         clientController.getClient(idClient);
         articleController.list(idArticle);
         if(!orderDAO.update(order)){
