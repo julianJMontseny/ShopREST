@@ -1,5 +1,6 @@
 package org.iesfm.shop.controller;
 
+import org.iesfm.shop.Client;
 import org.iesfm.shop.Order;
 import org.iesfm.shop.dao.OrderDAO;
 import org.springframework.http.HttpStatus;
@@ -21,15 +22,16 @@ public class OrderController {
         this.clientController = clientController;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/orders")
-    public List<Order> getOrders(){
-        return orderDAO.list();
+    @RequestMapping(method = RequestMethod.GET, path = "/clients/{id}/orders")
+    public List<Order> getOrders(@PathVariable("id") int idCliente){
+        int orderClientId = 0;
+        Client client = clientController.getClient(idCliente);
+        orderClientId = client.getId();
+        return orderDAO.list(orderClientId);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/orders/{idClient}")
-    public void createOrder(int idClient,int idArticle, @RequestBody Order order){
-        articleController.list(idArticle);
-        clientController.getClient(idClient);
+    @RequestMapping(method = RequestMethod.POST, path = "/orders")
+    public void createOrder(@RequestBody Order order){
         orderDAO.insert(order);
     }
 

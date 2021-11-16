@@ -1,12 +1,16 @@
 package org.iesfm.shop;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class OrderItem {
     private int articleId;
     private int amount;
 
-    public OrderItem(int articleId, int amount) {
+    @JsonCreator
+    public OrderItem(@JsonProperty("articleId") int articleId,@JsonProperty("amount") int amount) {
         this.articleId = articleId;
         this.amount = amount;
     }

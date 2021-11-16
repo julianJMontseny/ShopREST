@@ -15,7 +15,8 @@ public class Order {
     @JsonFormat(locale = "dd/MM/yyyy")
     private Date date;
 
-    public Order(int id, int clientId, List<OrderItem> items, Date date) {
+    @JsonCreator
+    public Order(@JsonProperty("id") int id,@JsonProperty("clientId") int clientId,@JsonProperty("items") List<OrderItem> items, @JsonProperty("date") Date date) {
         this.id = id;
         this.clientId = clientId;
         this.items = items;
