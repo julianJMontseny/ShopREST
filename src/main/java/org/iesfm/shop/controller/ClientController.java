@@ -23,44 +23,42 @@ public class ClientController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/clients")
-    public List<Client> getAllClients(){
-
+    public List<Client> getAllClients() {
         return clientDAO.list();
-
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/clients/{id}")
-    public Client getClient(@PathVariable("id") int id){
+    public Client getClient(@PathVariable("id") int id) {
         Client client = clientDAO.get(id);
-        if(client != null){
+        if (client != null) {
             return client;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Client not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found");
         }
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/clients")
-    public void createClient(@RequestBody Client client){
-        if(!clientDAO.insert(client)){
-            throw new ResponseStatusException(HttpStatus.CONFLICT,"Client already exists");
+    public void createClient(@RequestBody Client client) {
+        if (!clientDAO.insert(client)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Client already exists");
         } else {
             clientDAO.insert(client);
         }
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/clients/{id}")
-    public void updateClient(@RequestBody Client client){
-        if(!clientDAO.update(client)){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Client not found");
+    public void updateClient(@RequestBody Client client) {
+        if (!clientDAO.update(client)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found");
         } else {
             clientDAO.update(client);
         }
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/clients/{id}")
-    public void deleteClient(@PathVariable("id") int id){
-        if(clientDAO.delete(id)){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Client not found");
+    public void deleteClient(@PathVariable("id") int id) {
+        if (clientDAO.delete(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found");
         } else {
             clientDAO.delete(id);
         }

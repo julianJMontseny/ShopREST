@@ -2,7 +2,6 @@ package org.iesfm.shop.controller;
 
 import org.iesfm.shop.Article;
 import org.iesfm.shop.dao.ArticleDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;

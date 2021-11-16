@@ -2,9 +2,6 @@ package org.iesfm.shop.controller;
 
 import org.iesfm.shop.Order;
 import org.iesfm.shop.dao.OrderDAO;
-import org.iesfm.shop.dao.inmemory.InMemoryOrderDAO;
-import org.iesfm.shop.dao.jdbc.JDBCOrderDAO;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -29,8 +26,8 @@ public class OrderController {
         return orderDAO.list();
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/orders")
-    public void createOrder(int idClient, int idArticle, @RequestBody Order order){
+    @RequestMapping(method = RequestMethod.POST, path = "/orders/{idClient}")
+    public void createOrder(int idClient,int idArticle, @RequestBody Order order){
         articleController.list(idArticle);
         clientController.getClient(idClient);
         orderDAO.insert(order);

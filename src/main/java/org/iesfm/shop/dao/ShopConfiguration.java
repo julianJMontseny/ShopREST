@@ -17,13 +17,14 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("shop.properties")
+//@PropertySource("shop.properties")
 public class ShopConfiguration {
 
-    @Bean
-    public NamedParameterJdbcTemplate jdbc(DataSource dataSource) {
-        return new NamedParameterJdbcTemplate(dataSource);
-    }
+//    @Bean
+//    public NamedParameterJdbcTemplate jdbc(DataSource dataSource) {
+//        return new NamedParameterJdbcTemplate(dataSource);
+//    }
+    // Estan comentados porque no estamos utilizando Queries. Ni JDBC. Estamos usando InMemory.
 
     @Bean
     public ArticleDAO inMemoryArticleDAO(){
@@ -55,16 +56,16 @@ public class ShopConfiguration {
 //        return new JDBCOrderDAO(jdbc);
 //    }
 
-    @Bean
-    public DataSource dataSource(@Value("${database.url}") String url,
-                                 @Value("${database.username}") String username,
-                                 @Value("${database.password}") String password) {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        return dataSource;
-    }
+//    @Bean
+//    public DataSource dataSource(@Value("${database.url}") String url,
+//                                 @Value("${database.username}") String username,
+//                                 @Value("${database.password}") String password) {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setUrl(url);
+//        dataSource.setUsername(username);
+//        dataSource.setPassword(password);
+//        return dataSource;
+//    }
 
 
 }
