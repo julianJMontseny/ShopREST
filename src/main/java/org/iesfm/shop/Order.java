@@ -12,7 +12,7 @@ public class Order {
     private int id;
     private int clientId;
     private List<OrderItem> items;
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern= "dd/MM/yyyy")
     private Date date;
 
     @JsonCreator
