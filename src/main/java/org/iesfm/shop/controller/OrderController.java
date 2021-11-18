@@ -36,9 +36,9 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/clients/{idCliente}/orders/{idOrder}")
-    public void updateOrder(@PathVariable("idCliente")int idClient,@PathVariable("idArticle") int idArticle, @PathVariable("idOrder") int idOrder, @RequestBody Order order){
+    public void updateOrder(@PathVariable("idCliente")int idClient, @PathVariable("idOrder") int idOrder, @RequestBody Order order){
         clientController.getClient(idClient);
-        articleController.list(idArticle);
+        articleController.list(idOrder);
         if(!orderDAO.update(order)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Order not found");
         } else {
